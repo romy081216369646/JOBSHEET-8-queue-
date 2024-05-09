@@ -1,0 +1,5 @@
+public void Enqueue(int dt){
+    if (isFull()){
+        System.out.println("Queue sudah penuh");
+        System.exit(0);
+    } else {
