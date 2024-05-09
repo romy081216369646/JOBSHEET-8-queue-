@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue antrian = new Queue(5);
+        
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Tambah Pembeli");
+            System.out.println("2. Hapus Pembeli");
+            System.out.println("3. Lihat Pembeli Terdepan");
+            System.out.println("4. Lihat Pembeli Terbelakang");
+            System.out.println("5. Cari Posisi Pembeli");
+            System.out.println("6. Daftar Seluruh Pembeli");
+            System.out.println("7. Keluar");
+            System.out.print("Pilih menu: ");
+            int menu = scanner.nextInt();
+            
+            switch (menu) {
+                case 1:
+                    System.out.print("Masukkan nama pembeli: ");
+                    String nama = scanner.next();
+                    System.out.print("Masukkan nomor HP pembeli: ");
+                    int noHP = scanner.nextInt();
+                    antrian.enqueue(new Pembeli(nama, noHP));
+                    break;
+                case 2:
+                    int deletedNoHP = antrian.dequeue();
+                    if (deletedNoHP != -1)
+                        System.out.println("Pembeli dengan nomor HP " + deletedNoHP + " telah dihapus dari antrian.");
+                    break;
+                case 3:
+                    antrian.peek();
+                    break;
+                case 4:
+                    antrian.peekRear();
+                    break;
+                case 5:
+                    System.out.print("Masukkan nama pembeli yang ingin dicari: ");
+                    String searchNama = scanner.next();
+                    antrian.peekPosition(searchNama);
+                    break;
+                case 6:
+                    antrian.daftarPembeli();
+                    break;
+                case 7:
+                    System.out.println("Terima kasih!");
+                    System.exit(0);
+                default:
+                    System.out.println("Menu tidak valid.");
+                    break;
+            }
+        }
+    }
+}
